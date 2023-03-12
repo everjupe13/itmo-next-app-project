@@ -1,10 +1,20 @@
-function About() {
+import Layout from '../components/Layout'
+
+
+const About = ({ time }) => {
   return (
-    <div>
-      <h1>About me</h1>
-      <p>I'm a developer who loves building web applications with Next.js!</p>
-    </div>
+    <Layout>
+      <h1>About This App</h1>
+      <p>This app was built using Next.js.</p>
+      <p>The server time is {time}.</p>
+    </Layout>
   )
+}
+
+export const getServerSideProps = async () => {
+  return { 
+    props: { time: new Date().toString() } 
+  }
 }
 
 export default About

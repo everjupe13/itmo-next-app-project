@@ -1,14 +1,27 @@
-import Link from 'next/link'
+import Layout from '../components/Layout'
+import PostList from '../components/PostList'
 
-function Home() {
+
+const Home = ({ posts }) => {
   return (
-    <div>
-      <h1>Welcome to my Next.js SPA!</h1>
-      <p>
-        Click <Link href="/about">here</Link> to learn more about me.
-      </p>
-    </div>
+    <Layout>
+      <h1>Welcome to my Next.js App</h1>
+      <p>Here are some posts:</p>
+      <PostList posts={posts} />
+    </Layout>
   )
 }
+
+export const getStaticProps = async () => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+  const posts = await res.json()
+
+  return {
+    props: {
+      posts,
+    },
+  }
+}
+
 
 export default Home

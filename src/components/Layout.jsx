@@ -1,13 +1,15 @@
+import Link from "next/link"
+
 const Layout = ({ children }) => {
   return (
     <div>
       <nav>
         <Link href="/">
-          <a>Home</a>
+          Home
         </Link>{' '}
         |{' '}
         <Link href="/about">
-          <a>About</a>
+          About
         </Link>
       </nav>
       <main>{children}</main>
