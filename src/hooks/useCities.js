@@ -3,10 +3,7 @@ import useSWR from 'swr'
 import { fetcher } from '@/utils/helpers/fetcher.js'
 
 const useCities = () => {
-  const { data, isLoading, error } = useSWR(
-    'http://localhost:3000/api/cities',
-    fetcher
-  )
+  const { data, isLoading, error } = useSWR('/api/cities', fetcher)
 
   return { data, isLoading, error }
 }
