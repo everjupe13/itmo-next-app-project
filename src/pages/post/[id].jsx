@@ -1,7 +1,20 @@
+import { useRouter } from 'next/router'
+
 import PostItem from '@/components/modules/posts/PostItem'
 import { capitalize } from '@/utils/string/capitalize'
 
 const PostPage = ({ post }) => {
+  const router = useRouter()
+  const { id: postId } = router.query
+
+  // router.push('/some-path')
+  // router.replace('/some-path')
+  // router.push({ pathname: '/come-to-me', query: { id: 1, slug: 'sone-slug' } })
+  // router.push({ pathname: '/post', query: { id: 1, slug: 'sone-slug' } })
+  // router.replace({ pathname: '/come-to-me', query: { id: 1, slug: 'sone-slug' } })
+
+  console.log(router)
+
   return <PostItem title={post.title} content={post.body}></PostItem>
 }
 
