@@ -1,13 +1,8 @@
-import Layout from '../../components/Layout'
+import PostItem from '@/components/modules/posts/PostItem'
+import { capitalize } from '@/utils/string/capitalize'
 
-
-const Post = ({ post }) => {
-  return (
-    <Layout>
-      <h1>{post.title}</h1>
-      <p>{post.body}</p>
-    </Layout>
-  )
+const PostPage = ({ post }) => {
+  return <PostItem title={post.title} content={post.body}></PostItem>
 }
 
 export const getStaticPaths = async () => {
@@ -15,7 +10,7 @@ export const getStaticPaths = async () => {
   const posts = await res.json()
 
   const paths = posts.map(post => ({
-    params: { id: post.id.toString() },
+    params: { id: post.id.toString() }
   }))
 
   return { paths, fallback: false }
@@ -29,9 +24,13 @@ export const getStaticProps = async ({ params }) => {
 
   return {
     props: {
-      post,
-    },
+      post: {
+        ...post,
+        title: capitalize(post.title),
+        body: capitalize(post.body)
+      }
+    }
   }
 }
 
-export default Post
+export default PostPage
